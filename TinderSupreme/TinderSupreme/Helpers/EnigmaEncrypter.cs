@@ -21,7 +21,7 @@ namespace TinderSupreme.Helpers
                 {
                     encryptChar = (encryptChar ^ okey) * multiplicator;
                 }
-                generatedPass += (char)encryptChar;
+                generatedPass += (char)(encryptChar%256);
             }
 
             return generatedPass;
