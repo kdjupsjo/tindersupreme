@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TinderSupreme.DAL;
+using TinderSupreme.Helpers;
 
 
 namespace TinderSupreme.BLL
@@ -16,10 +17,11 @@ namespace TinderSupreme.BLL
             if(newUser.Password == verifiedPassWord)
             {
                 //Username don't exists, check if the password verfication is correct
-                if (!AccountDAL.IsUsernameInDB(newUser.UserName))               
+                if (!AccountDAL.IsUsernameInDB(newUser.UserName))
                 {
                     //Store username in database
-                    AccountDAL.Store(newUser);
+                    AccountDAL.Store(Encrypt(newUser));
+
                     s += "Username succesfully created and stored in database";
 
                 }
@@ -34,6 +36,27 @@ namespace TinderSupreme.BLL
                 s += "Password verification failed";
             }
             return s;
+        }
+
+        public static void DeleteUser(Account delAccount)
+        {
+            var accToDel = Encrypt(delAccount);
+
+            if (AccountDAL.isValidAccount(accToDel))
+            {
+                AccountDAL.Delete(accToDel);
+            }
+        }
+
+        private static Account Encrypt(Account account)
+        {
+            Account encryptedAcc = new Account()
+            {
+                UserName = account.UserName,
+                Password = EnigmaEncrypter.Encryptor(account.Password)
+            };
+
+            return encryptedAcc;
         }
         
     }
