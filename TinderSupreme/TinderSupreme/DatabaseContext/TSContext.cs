@@ -17,6 +17,7 @@ namespace TinderSupreme
         public String Password { get; set; }
     }
 
+
     public class TSContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
