@@ -42,7 +42,7 @@ namespace TinderSupreme.BLL
         {
             var accToDel = Encrypt(delAccount);
 
-            if (AccountDAL.isValidAccount(accToDel))
+            if (AccountDAL.IsValidAccount(accToDel))
             {
                 AccountDAL.Delete(accToDel);
             }
