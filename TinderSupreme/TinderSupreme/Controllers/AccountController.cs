@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
+using TinderSupreme.BLL;
+using TinderSupreme.Models;
 
 namespace TinderSupreme
 {
@@ -34,13 +36,11 @@ namespace TinderSupreme
         
 
         // POST /api/account
-        public Account Post(Account a)
+        public String Post(CreateAccountModel account)
         {
-            tinderS.Accounts.Add(a);
-
-            tinderS.SaveChanges();
-
-            return a;
+            return AccountBLL.NewUser(account.account, account.verifyPass);
+            
+          
         }
 
         /*
