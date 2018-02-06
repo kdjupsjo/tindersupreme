@@ -20,9 +20,9 @@ namespace TinderSupreme
         }
         
         // GET api/values
-        public IEnumerable<Account> Get()
+        public IEnumerable<String> Get()
         {
-            var acs = from a in tinderS.Accounts select a;
+            var acs = from a in tinderS.Accounts select a.UserName;
 
             return acs;
         }
