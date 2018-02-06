@@ -16,9 +16,28 @@ namespace TinderSupreme.DAL
             return userAccount != null;
         }
 
+        public static bool IsValidAccount(Account account)
+        {
+            var acco = accountContext.Accounts
+                .Where((ac) =>
+                   ac.UserName.Equals(account.UserName) &&
+                   ac.Password.Equals(account.Password)
+                    )
+                .First();
+
+            return acco != null;
+        }
+
         public static void Store(Account newAccount)
         {
             accountContext.Accounts.Add(newAccount);
+
+            accountContext.SaveChanges();
+        }
+
+        public static void Delete(Account oldAccount)
+        {
+            accountContext.Accounts.Remove(oldAccount);
 
             accountContext.SaveChanges();
         }
