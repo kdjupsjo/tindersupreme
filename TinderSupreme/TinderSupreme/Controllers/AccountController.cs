@@ -25,21 +25,22 @@ namespace TinderSupreme
             return acs;
         }
 
-        /*
-        // GET api/values/5
+        
+        // GET api/values/
         public string Get(int id)
         {
             return "value";
         }
-        */
+        
 
         // POST /api/account
-        public void Post(Account a)
+        public Account Post(Account a)
         {
             tinderS.Accounts.Add(a);
 
             tinderS.SaveChanges();
-            
+
+            return a;
         }
 
         /*
