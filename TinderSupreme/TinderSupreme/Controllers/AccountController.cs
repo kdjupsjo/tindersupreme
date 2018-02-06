@@ -39,8 +39,11 @@ namespace TinderSupreme
         public String Post(CreateAccountModel account)
         {
             return AccountBLL.NewUser(account.account, account.verifyPass);
-            
-          
+        }
+
+        public String Post(Account account)
+        {
+            return "Deleted";
         }
 
         /*
