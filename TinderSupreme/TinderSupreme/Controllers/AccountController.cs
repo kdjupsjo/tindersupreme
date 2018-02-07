@@ -41,9 +41,10 @@ namespace TinderSupreme
             return AccountBLL.NewUser(account.account, account.verifyPass);
         }
 
-        [Route("account/delete")]
+        [Route("api/account/delete")]
         public String Post(Account account)
         {
+            AccountBLL.DeleteUser(account);
             return "Deleted";
         }
 
